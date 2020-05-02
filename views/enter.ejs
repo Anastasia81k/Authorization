@@ -1,0 +1,53 @@
+<!
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Enter</title>
+    <style>
+        .login-form{
+            width: 300px;
+            margin: 0 auto;
+            font-family: Tahoma, Geneva, sans-serif;
+        }
+        .login-form h1 {
+            text-align: center;
+            color: #4d4d4d;
+            font-size: 24px;
+            padding: 20px 0 20px 0;
+        }
+        .login-form input[type="password"],
+        .login-form input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #dddddd;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+        .login-form button[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            background-color: #535b63;
+            border: 0;
+            box-sizing: border-box;
+            cursor: pointer;
+            font-weight: bold;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+<div class="login-form">
+<h1>Enter</h1>
+<form name="enter" method="post" action="/enterUser">
+    <label>Логін</label><br><br>
+    <input type="text" name="userName" /><br><br>
+    <label>Пароль</label><br><br>
+    <input type="password" name="userPass" /><br><br>
+    <button type="submit" id="submit">Ввійти</button>
+</form>
+</div>
+</body>
+</html>
