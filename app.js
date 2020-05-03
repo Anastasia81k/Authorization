@@ -55,6 +55,11 @@ app.get("/enter", function (req, res) {
         status : false
     });
 });
+app.get("/showProfile", function (req, res) {
+    res.render('showProfile', {
+        status : false
+    });
+});
 
 /*
 app.use(cookieParser('secret'));
@@ -73,10 +78,10 @@ app.post("/regestrationAction", urlencodedParser, (req, res)=>{
             if (err) throw err;
             /* req.flash('success', 'Registration successfully');
              res.locals.message = req.flash();*/   ///////ВЫВЫОД ОБ УСПЕШНОЙ РЕГЕСТРАЦИИ
-            res.redirect("/");
-            /* res.render('showUsers', {
-                  status: true
-              })*/
+            res.render("authorization",{
+                status : true
+            });
+           // res.redirect("/");
         })
     }
     else {
@@ -87,12 +92,21 @@ app.post("/regestrationAction", urlencodedParser, (req, res)=>{
 app.post("/enterUser", urlencodedParser, function (req, res){
     const userName = req.body.userName;
     const userPass = req.body.userPass;
+    const userId = req.params.userId;
     if(userName && userPass){
-        connection.query("SELECT * FROM users WHERE userName = ? AND userPass = ?", [userName, userPass ], function (err, results, fields) {
+        connection.query("SELECT * FROM users WHERE userName = ? AND userPass = ? AND userId", [userName, userPass, userId], function (err, results, fields) {
             if(results.length > 0){
                 //req.session.loggedin = true;
                 req.session.userName = userName;
-                res.redirect("/showUsers");
+                res.render("showProfile", {
+                    usersList: results,
+                    status: true
+                })
+              /*res.render("showUsers", {
+                  usersList: results,
+                  status : true
+              })*/
+              //res.redirect("/showUsers");
             }
             else{
                 res.send('Incorrect Username and/or Password!');
@@ -106,20 +120,46 @@ app.post("/enterUser", urlencodedParser, function (req, res){
 
 });
 
-app.get("/showUsers", function (req, res) {
-    let querySel = "SELECT * FROM users";
-    connection.query(querySel, (err, results)=>{
+app.get("/enterUsers/:id", (req,res)=>{
+    const id = (req.params.id).slice(1);
+    connection.query("SELECT * FROM users WHERE userId = ?", [id],function (err, results) {
         if(err) throw err;
-        res.render("showUsers", {
-            usersList: results
+       res.render("editProfile",{
+            userList: results,
         });
     });
 });
 
 
+app.get("/showUsers", function (req, res) {
+    let querySel = "SELECT * FROM users";
+    connection.query(querySel, (err, results)=>{
+        if(err) throw err;
+        res.render("showUsers", {
+            usersList: results,
+        });
+    });
+});
 
+
+app.post("/editProfile", urlencodedParser, (req, res)=>{
+    let userName = req.body.userName;
+    let userPass = req.body.userPass;
+    let userEmail = req.body.userEmail;
+    let userId = req.body.userId;
+    let queryUpdate = "UPDATE users SET userName = ?, userPass = ?, userEmail =?  WHERE userId = ?;";
+    connection.query(queryUpdate, [userName, userPass, userEmail, userId], (err, results)=>{
+        if(err) throw err;
+        res.redirect("/showUsers");
+      /* res.render("showUsers"),{
+            usersList: results,
+            status : false
+        };*/
+    });
+});
 
 
 app.listen(3000, () => {
     console.log("Server started!!!");
 })
+

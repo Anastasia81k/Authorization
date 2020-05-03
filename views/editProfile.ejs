@@ -1,4 +1,4 @@
-<!
+</
 <html>
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
     <title>Document</title>
     <style>
         body {background-color:#98bfd5;}
-        .authorisation{
+        .editProfile{
             width: 300px;
             margin: 0 auto;
             font-family: Tahoma, Geneva, sans-serif;
@@ -40,22 +40,19 @@
     </style>
 </head>
 <body>
-<div class="authorisation">
-    <h1>Authorisation</h1>
-    <% if(status) {%>
-        <p style="color: green">Інформаці до БД додана успішно!!!</p>
-    <%}%>
-    <form name="regestration" method="post" action="/regestrationAction">
+<div class="editProfile">
+    <h1>Edit</h1>
+    <form name="edit" method="post" action="/editProfile">
+        <label>Id</label><br>
+        <input type="text" name="userId" value="<%= userList[0].userId%>"/><br><br>
         <label>Логін</label><br>
-        <input type="text" name="userName" /><br><br>
+        <input type="text" name="userName" value="<%= userList[0].userName%>"/><br><br>
         <label>Пароль</label><br><br>
-        <input type="password" name="userPass" /><br><br>
+        <input type="password" name="userPass" value="<%= userList[0].userPass%>" /><br><br>
         <label>Підтвердження пароля</label><br><br>
-        <input type="password" name="userPassNew" /><br><br>
         <label>Email</label><br>
-        <input type="text" name="userEmail" /><br><br>
-        <button type="submit" id="submitReg">Зареєструватись</button><br><br>
-
+        <input type="text" name="userEmail" value="<%= userList[0].userEmail%>"/><br><br>
+        <button type="submit" id="submitReg">Обновити</button><br><br>
     </form>
 </div>
 </body>

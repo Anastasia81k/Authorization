@@ -1,0 +1,26 @@
+<!
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+</div>
+<% if(status) {%>
+    <p><h2 style="color: green; cursor: pointer; font-weight: bold;">Вхід здійснено успішноо!!!</h2></p>
+<%}%>
+
+<!-- <p style="color: blue">Id: <users[0].userId%> </p>-->
+
+
+<% usersList.forEach((value)=>{ %>
+    <nav><a href="/">Вийти</a> | <a href="/enterUsers/:<%=value.userId %>">Редагувати профіль</a></nav>
+    <p style="color: blue; position: absolute; right: 20px;">Login: <%= value.userName %></p>
+    <p style="color: blue">Id: <%= value.userId %></p>
+<% }); %>
+<a href="/showUsers"><h3>Переглянути всіх користувачів</h3></a>
+</body>
+</html>
