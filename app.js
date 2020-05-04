@@ -74,6 +74,20 @@ app.use(flash());
 */
 
 
+app.post("/addCadet", urlencodedParser, (req, res)=>{
+    const cadetRank = req.body.cadetRank;
+    const cadetLastName = req.body.cadetLastName;
+    const cadetName = req.body.cadetName;
+    const cadetPatronymic = req.body.cadetPatronymic;
+    const cadetBirthday = req.body.cadetBirthday;
+    const cadetMStatus = req.body.cadetMStatus;
+    let queryInsCadet = "INSERT INTO cadet (cadetRank, cadetLastName, cadetName, cadetPatronymic, cadetBirthday, cadetMStatus) VALUES(?,?,?,?,?,?);";
+    connection.query(queryInsCadet, [cadetRank,cadetLastName,cadetName,cadetPatronymic, cadetBirthday,cadetMStatus], (err, results)=>{
+        if(err) throw err;
+        res.redirect('/showCadets');
+    })
+})
+
 app.post("/regestrationAction", urlencodedParser, (req, res)=>{
     const userName = req.body.userName;
     const userPass = req.body.userPass;
