@@ -13,21 +13,21 @@
             margin: 0 auto;
             font-family: Tahoma, Geneva, sans-serif;
         }
-        .authorisation h1{
+        .editProfile h1{
             text-align: center;
             color: #4d4d4d;
             font-size: 24px;
             padding: 20px 0 20px 0;
         }
-        .authorisation input[type="password"],
-        .authorisation input[type="text"]{
+        .editProfile input[type="password"],
+        .editProfile input[type="text"]{
             width: 100%;
             padding: 15px;
             border: 1px solid #dddddd;
             margin-bottom: 15px;
             box-sizing:border-box;
         }
-        .authorisation button[type="submit"]{
+        .editProfile button[type="submit"]{
             width: 100%;
             padding: 15px;
             background-color: #535b63;
@@ -42,14 +42,13 @@
 <body>
 <div class="editProfile">
     <h1>Edit</h1>
-    <form name="edit" method="post" action="/editProfile">
+        <form name="edit" method="post" action="/editProfile">
         <label>Id</label><br>
         <input type="text" name="userId" value="<%= userList[0].userId%>"/><br><br>
         <label>Логін</label><br>
         <input type="text" name="userName" value="<%= userList[0].userName%>"/><br><br>
         <label>Пароль</label><br><br>
         <input type="password" name="userPass" value="<%= userList[0].userPass%>" /><br><br>
-        <label>Підтвердження пароля</label><br><br>
         <label>Email</label><br>
         <input type="text" name="userEmail" value="<%= userList[0].userEmail%>"/><br><br>
         <button type="submit" id="submitReg">Обновити</button><br><br>

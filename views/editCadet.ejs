@@ -1,0 +1,64 @@
+</
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {background-color:#98bfd5;}
+        .editCadet{
+            width: 300px;
+            margin: 0 auto;
+            font-family: Tahoma, Geneva, sans-serif;
+        }
+        .editCadet h1{
+            text-align: center;
+            color: #4d4d4d;
+            font-size: 24px;
+            padding: 20px 0 20px 0;
+        }
+        .editCadet input[type="password"],
+        .editCadet input[type="text"]{
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #dddddd;
+            margin-bottom: 15px;
+            box-sizing:border-box;
+        }
+        .editCadet button[type="submit"]{
+            width: 100%;
+            padding: 15px;
+            background-color: #535b63;
+            border: 0;
+            box-sizing: border-box;
+            cursor: pointer;
+            font-weight: bold;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+<div class="editCadet">
+    <h1>Edit Cadet</h1>
+    <form name="editCad" method="post" action="/editCadet">
+        <label>Id</label><br>
+        <input type="text" name="cadetId" value="<%= cadetList[0].cadetId%>"/><br><br>
+        <label>Звання</label><br>
+        <input type="text" name="cadetRank" value="<%= cadetList[0].cadetRank%>"/><br><br>
+        <label>Прізвище</label><br><br>
+        <input type="text" name="cadetLastName" value="<%= cadetList[0].cadetLastName%>" /><br><br>
+        <label>Ім'я</label><br><br>
+        <input type="text" name="cadetName" value="<%= cadetList[0].cadetName%>" /><br><br>
+        <label>По батькові</label><br>
+        <input type="text" name="cadetPatronymic" value="<%= cadetList[0].cadetPatronymic%>"/><br><br>
+        <label>Дата народження</label><br>
+        <input type="text" name="cadetBirthday" value="<%= cadetList[0].cadetBirthday%>"/><br><br>
+        <label>Сімейний стан</label><br>
+        <input type="text" name="cadetMStatus" value="<%= cadetList[0].cadetMStatus%>"/><br><br>
+        <button type="submit" id="submitCad">Обновити</button><br><br>
+    </form>
+</div>
+</body>
+</html>

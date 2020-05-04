@@ -1,15 +1,43 @@
 <!
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        body {background-color:#98bfd5;}
+        h2 {color:#494949}
+        th {
+            font-size: 13px;
+            font-weight: normal;
+            background: #b9c9fe;
+            border-top: 4px solid #aabcfe;
+            border-bottom: 1px solid #fff;
+            color: #039;
+            padding: 8px;
+        }
+        td {
+            background: #e8edff;
+            border-bottom: 1px solid #fff;
+            color: #669;
+            border-top: 1px solid transparent;
+            padding: 8px;
+        }
+        tr:hover td {background: #ccddff;}
+    </style>
 </head>
 <body>
+<div style="position: absolute; right: 20px">
+    <nav><a href="/">Вийти</a></nav>
+</div>
+<h2><a href="/addCadet"> Додати нового курсанта</a></h2>
 
-<a href="/addCadet"> ADD NEW CADET</a>
+
+<% if(status) {%>
+    <p style="color: green">Інформаці про курсанта з БД видалено успішно!!!</p>
+<%}%>
 
 <table>
     <tr>
@@ -30,6 +58,7 @@
             <td><%= value.cadetPatronymic %></td>
             <td><%= value.cadetBirthday %></td>
             <td><%= value.cadetMStatus %></td>
+            <td><a href="/showCadets/edit/<%= value.cadetId %>">Оновити</a> <a href="/showCadets/delete/<%= value.cadetId %>">Видалити</a></td>
         </tr>
     <% }); %>
 </table>

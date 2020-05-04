@@ -144,6 +144,29 @@ app.post("/enterUser", urlencodedParser, function (req, res){
 
 });
 
+app.get("/showCadets/delete/:id", (req, res)=>{
+    const id = req.params.id;
+    let queryDelCadet = "DELETE FROM cadet WHERE cadetId =?;";
+    connection.query(queryDelCadet, [id], function (err, data) {
+        if(err) throw err;
+        /*res.render("showCadets", {
+            status : true
+        })*/
+        res.redirect("/showCadets");
+    })
+})
+
+app.get("/showCadets/edit/:id", (req, res)=>{
+    const id = req.params.id;
+    let querySelId ="SELECT cadetId, cadetRank, cadetLastName, cadetName, cadetPatronymic, DATE_FORMAT(cadetBirthday, '%d/%m/%Y') as cadetBirthday, cadetMStatus FROM cadet WHERE cadetId = ?;";
+    connection.query(querySelId, [id], function (err, results) {
+        if(err) throw  err;
+        res.render("editCadet", {
+            cadetList: results
+        })
+    })
+})
+
 app.get("/enterUsers/:id", (req,res)=>{
     const id = (req.params.id).slice(1);
     connection.query("SELECT * FROM users WHERE userId = ?", [id],function (err, results) {
@@ -171,8 +194,24 @@ app.get("/showCadets", function (req, res) {
     connection.query(querySelCadet, (err, results)=>{
         if(err) throw err;
         res.render("showCadets", {
-            cadetList: results
+            cadetList: results,
+            status : false
         });
+    });
+});
+
+app.post("/editCadet", urlencodedParser, (req, res)=>{
+    let cadetRank = req.body.cadetRank;
+    let cadetLastName = req.body.cadetLastName;
+    let cadetName = req.body.cadetName;
+    let cadetPatronymic = req.body.cadetPatronymic;
+    let cadetBirthday = req.body.cadetBirthday;
+    let cadetMStatus = req.body.cadetMStatus;
+    let cadetId = req. body.cadetId;
+    let queryUpdateCadet = "UPDATE cadet SET cadetRank =?, cadetLastName =?, cadetName =?, cadetPatronymic=?, cadetBirthday=?, cadetMStatus =?  WHERE cadetId = ? ; ";
+    connection.query(queryUpdateCadet, [cadetRank, cadetLastName, cadetName, cadetPatronymic, cadetBirthday, cadetMStatus, cadetId], (err, results)=>{
+        if(err) throw  err;
+        res.redirect("/showCadets");
     });
 });
 

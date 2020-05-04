@@ -4,6 +4,11 @@
     <list default="true" id="efa0a9bf-0299-4fe7-b1e6-1aac0a0da366" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/addCadet.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/addCadet.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/editProfile.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/editProfile.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/showCadets.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/showCadets.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/showProfile.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/showProfile.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/showUsers.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/showUsers.ejs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,7 +31,7 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../gr271" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -61,6 +66,10 @@
       <workItem from="1588566635389" duration="8907000" />
       <workItem from="1588590174500" duration="38000" />
       <workItem from="1588590310917" duration="88000" />
+      <workItem from="1588598393350" duration="5606000" />
+      <workItem from="1588604459027" duration="3060000" />
+      <workItem from="1588626598793" duration="64000" />
+      <workItem from="1588626922891" duration="1535000" />
     </task>
     <servers />
   </component>
