@@ -4,9 +4,6 @@
     <list default="true" id="efa0a9bf-0299-4fe7-b1e6-1aac0a0da366" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/authorization.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/authorization.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/enter.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/enter.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/header/menu.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/header/menu.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/mainForm.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/mainForm.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/showUsers.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/showUsers.ejs" afterDir="false" />
     </list>
@@ -62,7 +59,9 @@
       <workItem from="1588408878501" duration="14768000" />
       <workItem from="1588449653521" duration="2003000" />
       <workItem from="1588451877946" duration="3142000" />
-      <workItem from="1588481956612" duration="23438000" />
+      <workItem from="1588481956612" duration="23746000" />
+      <workItem from="1588566635389" duration="8907000" />
+      <workItem from="1588590174500" duration="38000" />
     </task>
     <servers />
   </component>

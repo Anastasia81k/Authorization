@@ -43,7 +43,9 @@ connection.connect((err)=>{
 })
 
 app.get("/", function (req, res) {
-    res.render("mainForm" , {});
+    res.render("mainForm" , {
+        status: false
+    });
 });
 app.get("/authorisation", function (req, res) {
     res.render('authorization', {
@@ -60,12 +62,17 @@ app.get("/showProfile", function (req, res) {
         status : false
     });
 });
-
+app.get("/addCadet", function (req, res) {
+    res.render('addCadet', {
+        status : false
+    });
+});
 /*
 app.use(cookieParser('secret'));
 app.use(session({cookie: { maxAge: 60000 }}));
 app.use(flash());
 */
+
 
 app.post("/regestrationAction", urlencodedParser, (req, res)=>{
     const userName = req.body.userName;
@@ -78,10 +85,13 @@ app.post("/regestrationAction", urlencodedParser, (req, res)=>{
             if (err) throw err;
             /* req.flash('success', 'Registration successfully');
              res.locals.message = req.flash();*/   ///////ВЫВЫОД ОБ УСПЕШНОЙ РЕГЕСТРАЦИИ
-            res.render("authorization",{
+            /*res.render("showProfile",{
                 status : true
-            });
-           // res.redirect("/");
+            });*/
+          // res.redirect("/");
+            res.render('mainForm',{
+                status: true
+            })
         })
     }
     else {
@@ -137,6 +147,17 @@ app.get("/showUsers", function (req, res) {
         if(err) throw err;
         res.render("showUsers", {
             usersList: results,
+        });
+    });
+});
+
+app.get("/showCadets", function (req, res) {
+    //let querySelCadet = "SELECT * FROM cadet;";
+    let querySelCadet = "SELECT cadetId, cadetRank, cadetLastName, cadetName, cadetPatronymic, DATE_FORMAT(cadetBirthday, '%d/%m/%Y') as cadetBirthday, cadetMStatus from cadet; "
+    connection.query(querySelCadet, (err, results)=>{
+        if(err) throw err;
+        res.render("showCadets", {
+            cadetList: results
         });
     });
 });
