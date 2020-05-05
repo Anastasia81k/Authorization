@@ -41,6 +41,9 @@
 </head>
 <body>
 <div class="addCad">
+    <% if(status) {%>
+        <h1 style="color: green">Інформаці до БД додана успішно!!!</h1>
+    <%}%>
 <form name="addCadet" method="post" action="/addCadet">
     <label>Звання</label><br>
     <input type="text" name="cadetRank" /><br><br>

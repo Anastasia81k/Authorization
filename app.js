@@ -73,21 +73,6 @@ app.use(session({cookie: { maxAge: 60000 }}));
 app.use(flash());
 */
 
-
-app.post("/addCadet", urlencodedParser, (req, res)=>{
-    const cadetRank = req.body.cadetRank;
-    const cadetLastName = req.body.cadetLastName;
-    const cadetName = req.body.cadetName;
-    const cadetPatronymic = req.body.cadetPatronymic;
-    const cadetBirthday = req.body.cadetBirthday;
-    const cadetMStatus = req.body.cadetMStatus;
-    let queryInsCadet = "INSERT INTO cadet (cadetRank, cadetLastName, cadetName, cadetPatronymic, cadetBirthday, cadetMStatus) VALUES(?,?,?,?,?,?);";
-    connection.query(queryInsCadet, [cadetRank,cadetLastName,cadetName,cadetPatronymic, cadetBirthday,cadetMStatus], (err, results)=>{
-        if(err) throw err;
-        res.redirect('/showCadets');
-    })
-})
-
 app.post("/regestrationAction", urlencodedParser, (req, res)=>{
     const userName = req.body.userName;
     const userPass = req.body.userPass;
@@ -144,6 +129,73 @@ app.post("/enterUser", urlencodedParser, function (req, res){
 
 });
 
+app.get("/enterUsers/:id", (req,res)=>{
+    const id = (req.params.id).slice(1);
+    connection.query("SELECT * FROM users WHERE userId = ?", [id],function (err, results) {
+        if(err) throw err;
+        res.render("editProfile",{
+            userList: results,
+        });
+    });
+});
+
+
+app.get("/showUsers", function (req, res) {
+    let querySel = "SELECT * FROM users";
+    connection.query(querySel, (err, results)=>{
+        if(err) throw err;
+        res.render("showUsers", {
+            usersList: results,
+        });
+    });
+});
+
+
+app.post("/editProfile", urlencodedParser, (req, res)=>{
+    let userName = req.body.userName;
+    let userPass = req.body.userPass;
+    let userEmail = req.body.userEmail;
+    let userId = req.body.userId;
+    let queryUpdate = "UPDATE users SET userName = ?, userPass = ?, userEmail =?  WHERE userId = ?;";
+    connection.query(queryUpdate, [userName, userPass, userEmail, userId], (err, results)=>{
+        if(err) throw err;
+        //res.redirect("/showUsers");
+        res.render("showUsers"),{
+            usersList: results,
+            status : false
+        };
+    });
+});
+
+
+
+app.post("/addCadet", urlencodedParser, (req, res)=>{
+    const cadetRank = req.body.cadetRank;
+    const cadetLastName = req.body.cadetLastName;
+    const cadetName = req.body.cadetName;
+    const cadetPatronymic = req.body.cadetPatronymic;
+    const cadetBirthday = req.body.cadetBirthday;
+    const cadetMStatus = req.body.cadetMStatus;
+    let queryInsCadet = "INSERT INTO cadet (cadetRank, cadetLastName, cadetName, cadetPatronymic, cadetBirthday, cadetMStatus) VALUES(?,?,?,?,?,?);";
+    connection.query(queryInsCadet, [cadetRank,cadetLastName,cadetName,cadetPatronymic, cadetBirthday,cadetMStatus], (err, results)=>{
+        if(err) throw err;
+        res.redirect('/showCadets');
+    })
+})
+
+app.get("/showCadets", function (req, res) {
+    //let querySelCadet = "SELECT * FROM cadet;";
+    let querySelCadet = "SELECT cadetId, cadetRank, cadetLastName, cadetName, cadetPatronymic, DATE_FORMAT(cadetBirthday, '%d/%m/%Y') as cadetBirthday, cadetMStatus from cadet; "
+    connection.query(querySelCadet, (err, results)=>{
+        if(err) throw err;
+        res.render("showCadets", {
+            cadetList: results,
+            status : false
+        });
+    });
+});
+
+
 app.get("/showCadets/delete/:id", (req, res)=>{
     const id = req.params.id;
     let queryDelCadet = "DELETE FROM cadet WHERE cadetId =?;";
@@ -167,38 +219,6 @@ app.get("/showCadets/edit/:id", (req, res)=>{
     })
 })
 
-app.get("/enterUsers/:id", (req,res)=>{
-    const id = (req.params.id).slice(1);
-    connection.query("SELECT * FROM users WHERE userId = ?", [id],function (err, results) {
-        if(err) throw err;
-       res.render("editProfile",{
-            userList: results,
-        });
-    });
-});
-
-
-app.get("/showUsers", function (req, res) {
-    let querySel = "SELECT * FROM users";
-    connection.query(querySel, (err, results)=>{
-        if(err) throw err;
-        res.render("showUsers", {
-            usersList: results,
-        });
-    });
-});
-
-app.get("/showCadets", function (req, res) {
-    //let querySelCadet = "SELECT * FROM cadet;";
-    let querySelCadet = "SELECT cadetId, cadetRank, cadetLastName, cadetName, cadetPatronymic, DATE_FORMAT(cadetBirthday, '%d/%m/%Y') as cadetBirthday, cadetMStatus from cadet; "
-    connection.query(querySelCadet, (err, results)=>{
-        if(err) throw err;
-        res.render("showCadets", {
-            cadetList: results,
-            status : false
-        });
-    });
-});
 
 app.post("/editCadet", urlencodedParser, (req, res)=>{
     let cadetRank = req.body.cadetRank;
@@ -212,23 +232,6 @@ app.post("/editCadet", urlencodedParser, (req, res)=>{
     connection.query(queryUpdateCadet, [cadetRank, cadetLastName, cadetName, cadetPatronymic, cadetBirthday, cadetMStatus, cadetId], (err, results)=>{
         if(err) throw  err;
         res.redirect("/showCadets");
-    });
-});
-
-
-app.post("/editProfile", urlencodedParser, (req, res)=>{
-    let userName = req.body.userName;
-    let userPass = req.body.userPass;
-    let userEmail = req.body.userEmail;
-    let userId = req.body.userId;
-    let queryUpdate = "UPDATE users SET userName = ?, userPass = ?, userEmail =?  WHERE userId = ?;";
-    connection.query(queryUpdate, [userName, userPass, userEmail, userId], (err, results)=>{
-        if(err) throw err;
-        res.redirect("/showUsers");
-      /* res.render("showUsers"),{
-            usersList: results,
-            status : false
-        };*/
     });
 });
 
